@@ -1,6 +1,6 @@
 body {
-    font-family: marked-fool;
-    background-color: lightblue;
+    font-family: cursive;
+    background-color: black;
     margin-top: 75px;
 }
 
@@ -10,6 +10,10 @@ body {
 
 .text-big {
     font-size: 300%;
+}
+
+.white {
+    color: white;
 }
 
 .bold {
