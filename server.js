@@ -1,3 +1,5 @@
+//var http = require('http');
+var fs = require('fs');
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
@@ -6,15 +8,69 @@ var app = express();
 app.use(morgan('combined'));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  res.sendFile(path.join(__dirname, 'ui', 'a.html'));
+});
+
+app.get('/ui/xplsn.gif', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'xplsn.gif'));
 });
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 
+app.get('/ui/main.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'main.js'));
+});
+
+app.get('/ui/test.txt', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'test.txt'));
+});
+
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+app.get('/ui/a.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'a.html'));
+});
+
+app.get('/ui/001.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', '001.html'));
+});
+
+app.get('/ui/b.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+app.get('/ui/bcg.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'bcg.png'));
+});
+
+app.get('/ui/yes.txt', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'yes.txt'));
+});
+
+app.get('/ip', function (req, res) {
+  res.send(req.header('x-forwarded-for') || req.connection.remoteAddress);
+});
+
+app.post('/vote/yes', function (req, res) {
+  var ip;
+  var no;
+  ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+  res.sendFile(path.join(__dirname, 'ui', '002.html'));
+  fs.readFile(path.join(__dirname, 'ui', 'yes.txt'), 'utf-8', function (err, data) {
+    if (err) {
+      return console.error(err);
+    }
+    //console.log('jjfh\n#fhrh\nkr\nff\n#bjjkh\n'.split("\n").filter(/./.test, /\#/))
+    fs.writeFile(path.join(__dirname, 'ui', 'yes.txt'), data+'\n'+ip,  function(err) {
+      if (err) {
+        return console.error(err);
+      }
+    });
+  });
 });
 
 

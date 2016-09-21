@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Webapp - Nanda Krishnan on IMAD</title>
+        <link href="/ui/style.css" rel="stylesheet" />
+    </head>
+    <body bgcolor="black">
+        <div id="yoyo" class="center text-big bold white">
+            Get Ready, EVeRyBoDY
+        </div>
+    </body>
+    <script type="text/javascript">
+
+var getfile = function (url) {
+    var http = new XMLHttpRequest();
+    //var url = "ui/yes.txt";
+    http.open("GET", url, true);
+    
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+    http.onreadystatechange = function() {//Call a function when the state changes.
+        if(http.readyState == 4 && http.status == 200) {
+            document.write(http.responseText);//.split('\n').length-1;
+        }
+    }
+    http.send(null);
+}
+var i;
+i = 3;
+setTimeout(x, 1500);
+var timerId;
+function x() {timerId = setInterval(b, 1000);}
+function a() {
+    //document.body.background = null;
+    document.getElementById("yoyo").innerHTML = "Let's<br>BANG BANG";
+    setTimeout(c, 1000);
+//    document.getElementById("yoyo").
+}
+function b() {
+    document.getElementById("yoyo").innerHTML = i--;
+    if (i === -1) {
+        clearTimeout(timerId);
+        setTimeout(a, 1500);
+    }
+}
+
+function d() {
+    getfile("ui/001.html");//"<img src=\"ui/xplsn.gif\" height=\"550\" width=\"1000\"/>";
+}
+function c() {
+    document.getElementById("yoyo").innerHTML = "<img src=\"ui/xplsn.gif\" height=\"550\" width=\"1000\" alpha=50/>";
+    setTimeout(d, 1500);
+} 
+    </script>
+</html>
