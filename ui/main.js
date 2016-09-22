@@ -37,6 +37,7 @@ var getfile = function (url) {
 var voteyes = function () {
     var http = new XMLHttpRequest();
     var url = "vote/yes";
+    document.getElementById('yes-votes').innerHTML = "Loading...";
     http.open("POST", url, true);
     
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -44,6 +45,7 @@ var voteyes = function () {
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
             document.write(http.responseText);
+            refreshpage();
         }
     };
     http.send(null);
