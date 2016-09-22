@@ -56,40 +56,38 @@ var refreshpage = function() {
             document.getElementById('yes-votes').innerHTML = "You and " + (g.length-1) + ' others liked this';
         }
         else if (f===(g.length-1).toString(10)){
-            document.getElementById('yes-votes').innerHTML += " people liked this.<br><input type=\"button\" value=\"Like\" name=\"kkk\" onclick=\"voteyes()\">";
-            //console.log(f===(g.length-1));
-        }
-    }
-    ht.open("GET", ul, true);
-    
-    ht.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    
-    ht.onreadystatechange = function() {
-        if(ht.readyState == 4 && ht.status == 200) {
-            ip = ht.responseText;
-            htp.open("GET", "ui/yes.txt", true);
+            ht.open("GET", ul, true);
             
-            htp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ht.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             
-            htp.onreadystatechange = function() {
-                if(htp.readyState == 4 && htp.status == 200) {
-                    x = htp.responseText;
-                    var g = x.split("\n");
-                    for (f in g){
-                        if (g[f] === ip.toString(10)){
-                            document.getElementById('yes-votes').innerHTML = "You and " + (g.length-1) + ' others liked this';
+            ht.onreadystatechange = function() {
+                if(ht.readyState == 4 && ht.status == 200) {
+                    ip = ht.responseText;
+                    htp.open("GET", "ui/yes.txt", true);
+                    
+                    htp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    
+                    htp.onreadystatechange = function() {
+                        if(htp.readyState == 4 && htp.status == 200) {
+                            x = htp.responseText;
+                            var g = x.split("\n");
+                            for (f in g){
+                                if (g[f] === ip.toString(10)){
+                                    document.getElementById('yes-votes').innerHTML = "You and " + (g.length-1) + ' others liked this';
+                                }
+                                else if (f===(g.length-1).toString(10)){
+                                    document.getElementById('yes-votes').innerHTML = (g.length-1) + " people liked this.<br><input type=\"button\" value=\"Like\" name=\"kkk\" onclick=\"voteyes()\">";
+                                    //console.log(f===(g.length-1));
+                                }
+                            }
                         }
-                        else if (f===(g.length-1).toString(10)){
-                            document.getElementById('yes-votes').innerHTML = (g.length-1) + " people liked this.<br><input type=\"button\" value=\"Like\" name=\"kkk\" onclick=\"voteyes()\">";
-                            //console.log(f===(g.length-1));
-                        }
-                    }
+                    };
+                    htp.send(null);
                 }
             };
-            htp.send(null);
+            ht.send(null);
         }
-    };
-    ht.send(null);
+    }
 };
 console.log('Lded!');
 refreshpage();
