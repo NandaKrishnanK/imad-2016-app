@@ -3,7 +3,7 @@ var ht = new XMLHttpRequest();
 var htp = new XMLHttpRequest();
 var ip;
 var ul = "ip";
-var getvotes = function () {
+/*var getvotes = function () {
     var http = new XMLHttpRequest();
     var url = "ui/yes.txt";
     http.open("GET", url, true);
@@ -19,7 +19,7 @@ var getvotes = function () {
     };
     http.send(null);
 };
-getvotes();
+getvotes();*/
 var getfile = function (url) {
     var http = new XMLHttpRequest();
     //var url = "ui/yes.txt";
@@ -48,7 +48,7 @@ var voteyes = function () {
     };
     http.send(null);
 };
-var refreshpage = function() {
+/*var refreshpage = function() {
     var f;
     var g = x.split("\n");
     for (f in g){
@@ -88,6 +88,36 @@ var refreshpage = function() {
             ht.send(null);
         }
     }
-};
+};*/
+var refreshpage = function () {
+    ht.open("GET", "ip", true);
+    console.log("kjkej");
+    ht.setRequestHeader("Content-type", "text/plain");
+    ht.onreadystatechange = function() {
+        if(ht.readyState === 4 && ht.status == 200) {
+            ip = ht.responseText;
+            htp.open("GET", "ui/yes.txt", true);
+            htp.setRequestHeader("Content-type", "text/plain");
+            htp.onreadystatechange = function() {
+                if(htp.readyState  == 4 && htp.status == 200) {
+                    x = htp.responseText;
+                    var g = x.split("\n");
+                    var f;
+                    for (f in g) {
+                        if (g[f] === ip.toString(10)){
+                            document.getElementById('yes-votes').innerHTML = "You and " + (g.length-1) + ' others liked this';
+                            return;
+                        }
+                        else if(f === (g.length-1).toString(10)){
+                            document.getElementById('yes-votes').innerHTML = (g.length-1) + " people liked this.<br><input type=\"button\" value=\"Like\" name=\"kkk\" onclick=\"voteyes()\">";
+                        }
+                    }
+                }
+            };
+            htp.send(null);
+        }
+    };
+    ht.send(null);
+}
 console.log('Lded!');
 refreshpage();
