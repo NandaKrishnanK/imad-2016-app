@@ -81,4 +81,4 @@ var refreshpage = function() {
     ht.send(null);
 };
 console.log('Lded!');
-refreghpage();
+refreshpage();
