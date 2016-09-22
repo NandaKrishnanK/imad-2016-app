@@ -12,7 +12,8 @@ var getvotes = function () {
     
     http.onreadystatechange = function() {//Call a function when the state changes.
         if(http.readyState == 4 && http.status == 200) {
-            document.getElementById('yes-votes').innerHTML = http.responseText.split('\n').length-1;
+            x = http.responseText
+            document.getElementById('yes-votes').innerHTML = x.split('\n').length-1;
             refreshpage();
         }
     };
@@ -48,6 +49,17 @@ var voteyes = function () {
     http.send(null);
 };
 var refreshpage = function() {
+    var f;
+    var g = x.split("\n");
+    for (f in g){
+        if (g[f] === ip.toString(10)){
+            document.getElementById('yes-votes').innerHTML = "You and " + (g.length-1) + ' others liked this';
+        }
+        else if (f===(g.length-1).toString(10)){
+            document.getElementById('yes-votes').innerHTML += " people liked this.<br><input type=\"button\" value=\"Like\" name=\"kkk\" onclick=\"voteyes()\">";
+            //console.log(f===(g.length-1));
+        }
+    }
     ht.open("GET", ul, true);
     
     ht.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -62,14 +74,13 @@ var refreshpage = function() {
             htp.onreadystatechange = function() {
                 if(htp.readyState == 4 && htp.status == 200) {
                     x = htp.responseText;
-                    var f;
                     var g = x.split("\n");
                     for (f in g){
                         if (g[f] === ip.toString(10)){
-                            document.getElementById('yes-votes').innerHTML = "You and " + document.getElementById('yes-votes').innerHTML + ' others liked this';
+                            document.getElementById('yes-votes').innerHTML = "You and " + (g.length-1) + ' others liked this';
                         }
                         else if (f===(g.length-1).toString(10)){
-                            document.getElementById('yes-votes').innerHTML += " people liked this.<br><input type=\"button\" value=\"Like\" name=\"kkk\" onclick=\"voteyes()\">";
+                            document.getElementById('yes-votes').innerHTML = (g.length-1) + " people liked this.<br><input type=\"button\" value=\"Like\" name=\"kkk\" onclick=\"voteyes()\">";
                             //console.log(f===(g.length-1));
                         }
                     }
