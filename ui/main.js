@@ -90,6 +90,7 @@ var voteyes = function () {
     }
 };*/
 var refreshpage = function () {
+    document.getElementById('yes-votes').innerHTML = "Loading...";
     ht.open("GET", "ip", true);
     console.log("kjkej");
     ht.setRequestHeader("Content-type", "text/plain");
