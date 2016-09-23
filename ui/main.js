@@ -110,7 +110,7 @@ var refreshpage = function () {
                     var f;
                     for (f in g) {
                         if (g[f] === ip.toString(10)){
-                            document.getElementById('yes-votes').innerHTML = "You and " + (g.length-1) + ' others liked this';
+                            document.getElementById('yes-votes').innerHTML = "You and " + (g.length-2) + ' others liked this';
                             return;
                         }
                         else if(f === (g.length-1).toString(10)){
