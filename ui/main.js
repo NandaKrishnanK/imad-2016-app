@@ -99,6 +99,7 @@ var refreshpage = function () {
     ht.onreadystatechange = function() {
         if(ht.readyState === 4 && ht.status == 200) {
             ip = ht.responseText;
+            document.getElementById('jajh').innerHTML = ip;
             htp.open("GET", "ui/yes.txt", true);
             htp.setRequestHeader("Content-type", "text/plain");
             htp.onreadystatechange = function() {
