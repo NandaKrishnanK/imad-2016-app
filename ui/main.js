@@ -105,7 +105,7 @@ var refreshpage = function () {
             htp.onreadystatechange = function() {
                 if(htp.readyState  == 4 && htp.status == 200) {
                     x = htp.responseText;
-                    document.getElementById('jajh').innerHTML =+ x;
+                    document.getElementById('jajh').innerHTML = x;
                     var g = x.split("\n");
                     var f;
                     for (f in g) {
