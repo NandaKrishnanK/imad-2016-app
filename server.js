@@ -15,6 +15,10 @@ app.get('/ui/xplsn.gif', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'xplsn.gif'));
 });
 
+app.get('/ui/explsn.mp3', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'explsn.mp3'));
+});
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
@@ -51,7 +55,7 @@ app.post('/vote/yes', function (req, res) {
   var ip;
   var no;
   ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-  //res.sendFile(path.join(__dirname, 'ui', '001.html'));
+  res.sendFile(path.join(__dirname, 'ui', '001.html'));
   fs.readFile(path.join(__dirname, 'ui', 'yes.txt'), 'utf-8', function (err, data) {
     if (err) {
       return console.error(err);
