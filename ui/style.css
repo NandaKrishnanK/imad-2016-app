@@ -2,8 +2,6 @@ body {
     font-family: cursive;
     background-color: black;
     margin-top: 75px;
-/*    animation-name: example;
-    animation-duration: 4s;*/
 }
 
 .center {
@@ -25,9 +23,4 @@ body {
 .img-medium {
     height: 200px;
 }
-
-/*@keyframes example {
-    from {width: 1px;height: 1px;font-size: 1%;text-align: center;}
-    to {width: 1000px;height: 550px;font-size: 100%;text-align: center;}
-}*/
 
