@@ -54,7 +54,7 @@ app.get('/ip', function (req, res) {
 app.post('/vote/yes', function (req, res) {
   var ip;
   var no;
-  ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+  ip = req.ip;//header('x-forwarded-for') || req.connection.remoteAddress;
   res.sendFile(path.join(__dirname, 'ui', '001.html'));
   fs.readFile(path.join(__dirname, 'ui', 'yes.txt'), 'utf-8', function (err, data) {
     if (err) {
