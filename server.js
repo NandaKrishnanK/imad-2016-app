@@ -48,7 +48,7 @@ app.get('/ui/yes.txt', function (req, res) {
 });
 
 app.get('/ip', function (req, res) {
-  res.send(req.header('X-Forwarded-For'));// || req.connection.remoteAddress);
+  res.send(req.ip);//header('X-Forwarded-For'));// || req.connection.remoteAddress);
 });
 
 app.post('/vote/yes', function (req, res) {
