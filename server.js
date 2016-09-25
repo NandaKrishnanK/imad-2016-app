@@ -35,6 +35,10 @@ app.get('/ui/001.html', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', '001.html'));
 });
 
+app.get('/ui/liker.html', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'liker.html'));
+});
+
 app.get('/ui/b.html', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });

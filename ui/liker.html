@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>AutoLiker</title>
+	</head>
+	<body>
+		<input type='button' value='STOP' id='stop' onClick='stop()'>
+		<h1>hahaha</h1>
+		<div id='dfg'></div>
+		<script type='text/javascript'>
+			var counter = 0;
+			var s = 1;
+			function stop(){
+				if (s === 1) {
+					s = 0;
+					a();
+					document.getElementById('stop').value = 'Restart';
+				}
+				else if (s === 0) {
+					s = 1;
+					a();
+					document.getElementById('stop').value = 'Restart';
+				}
+			}
+			function a() {
+				var htp = new XMLHttpRequest();
+				htp.open("GET", "/vote/yes", true);
+				htp.setRequestHeader("Content-type", "text/plain");
+				htp.onreadystatechange = function() {
+					if(htp.readyState  == 4 && htp.status == 200) {
+						counter += 1;
+						if (s === 1) {
+							document.getElementById('dfg').innerHTML = '<h1>' + counter + ' votes</h1>';
+							a();
+						}
+					}
+				};
+				htp.send(null);
+			}
+			a();
+		</script>
+	</body>
+</html>
