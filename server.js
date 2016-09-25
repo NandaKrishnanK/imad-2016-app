@@ -8,7 +8,7 @@ var app = express();
 app.use(morgan('combined'));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'a.html'));
+  res.sendFile(path.join(__dirname, 'ui', '001.html'));
 });
 
 app.get('/ui/xplsn.gif', function (req, res) {
@@ -42,31 +42,19 @@ app.get('/ui/b.html', function (req, res) {
 app.get('/ui/bcg.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'bcg.png'));
 });
+var votes = [];
 
-app.get('/ui/yes.txt', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'yes.txt'));
+app.get('/votes', function (req, res) {
+  res.send(JSON.stringify(votes));
 });
 
-app.get('/ip', function (req, res) {
-  res.send(req.ip);//header('X-Forwarded-For'));// || req.connection.remoteAddress);
+app.get('/browser', function (req, res) {
+  res.send(req.headers['user-agent']);//header('X-Forwarded-For'));// || req.connection.remoteAddress);
 });
 
-app.post('/vote/yes', function (req, res) {
-  var ip;
-  var no;
-  ip = req.ip;//header('x-forwarded-for') || req.connection.remoteAddress;
-  res.sendFile(path.join(__dirname, 'ui', '001.html'));
-  fs.readFile(path.join(__dirname, 'ui', 'yes.txt'), 'utf-8', function (err, data) {
-    if (err) {
-      return console.error(err);
-    }
-    //console.log('jjfh\n#fhrh\nkr\nff\n#bjjkh\n'.split("\n").filter(/./.test, /\#/))
-    fs.writeFile(path.join(__dirname, 'ui', 'yes.txt'), data+'\n'+ip,  function(err) {
-      if (err) {
-        return console.error(err);
-      }
-    });
-  });
+app.get('/vote/yes', function (req, res) {
+  votes.push(req.headers['user-agent']);
+  res.send(JSON.stringify(votes));
 });
 
 
